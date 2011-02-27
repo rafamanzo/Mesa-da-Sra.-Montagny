@@ -1,0 +1,4 @@
+graph.o
+digraph.o
+arc.o
+main.o

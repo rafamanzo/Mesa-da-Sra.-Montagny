@@ -5,8 +5,6 @@
 #include "ed/graph.h"
 #include "io.h"
 
-int end;
-
 int inputNum(){
   int i;
   char num[3]; /* como 0 <= n <= 100, a maior string possível tem 3 caracteres  */
@@ -59,12 +57,23 @@ Graph inputInstance(){
   }else{
     G = GRAPHinit(nums[0] + 1);
     relations = nums[1];
+    free(nums);
 
     for(i = 0; i < relations; i++){
       nums = inputLine();
       GRAPHinsertE(G, nums[0], nums[1]);
+      free(nums);
     }
 
     return G;
   }  
+}
+
+void outInstance(int instance, int response){
+  printf("Instancia %d", instance);
+  if(response == 1){
+    printf("\nsim\n");
+  }else if(response == 0){
+    printf("\nnao\n");
+  }
 }

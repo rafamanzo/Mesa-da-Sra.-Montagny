@@ -19,7 +19,7 @@ digraph.o: ed/vertex.h arc.o ed/digraph.h ed/digraph.c
 graph.o: ed/vertex.h digraph.o ed/graph.h ed/graph.c 
 	gcc -c ed/graph.c
 
-io.o: ed/vertex.h ed/digraph.h graph.o io.h
+io.o: ed/vertex.h ed/digraph.h graph.o io.h io.c
 	gcc -c io.c
 
 clean:

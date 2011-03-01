@@ -1,3 +1,4 @@
 Graph inputInstance();
-void outInstance(int id);
-
+void outInstance(int instance, int response);
+int inputNum();
+int * inputLine();

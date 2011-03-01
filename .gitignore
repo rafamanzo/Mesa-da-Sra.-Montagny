@@ -3,4 +3,7 @@ digraph.o
 arc.o
 main.o
 io.o
+mesa.o
+input
+output
 Mesa

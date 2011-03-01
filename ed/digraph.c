@@ -5,13 +5,25 @@
 
 int *lbl;
 
-void DIGRAPHinit(int maxvertex){
+void lblInit(){
   int i;
 
-  lbl = malloc(maxvertex*sizeof(int));
-  for(i = 0; i < maxvertex; i++){
+  lbl = malloc(MAXVERTEX*sizeof(int));
+
+  for(i = 0; i < MAXVERTEX; i++){
     lbl[i] = -1;
-  }
+  }  
+}
+
+Digraph DIGRAPHinit(int vertexCount){
+  Digraph G;
+
+  G = malloc(sizeof(struct digraph));
+  G->V = vertexCount;
+  G->A = 0;
+  G->adj = MATRIXint(vertexCount, vertexCount, 0);
+
+  return G;
 }
 
 int ** MATRIXint(int r, int c, int val){

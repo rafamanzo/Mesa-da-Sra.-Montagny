@@ -1,3 +1,5 @@
+#define MAXVERTEX 1000
+
 struct digraph{
   int V;
   int A;
@@ -6,7 +8,8 @@ struct digraph{
 
 typedef struct digraph *Digraph;
 
-void DIGRAPHinit(int maxvertex);
+void lblInit();
+Digraph DIGRAPHinit(int vertexCount);
 int** MATRIXint(int r, int c, int val);
 void DIGRAPHinsertA(Digraph G, Vertex v, Vertex w);
 void DIGRAPHremoveA(Digraph G, Vertex v, Vertex w);

@@ -14,6 +14,7 @@ void solver(){
   while(G != NULL){
      outInstance(instance, processInstance(G));
      instance++;
+     G = inputInstance();
   }
 }
 
@@ -26,32 +27,37 @@ int processInstance(Graph G){
   for(i = 1; i <= G->V; i++){
     side[i] = STANDING;
   }
+
   for(i = 1; i <= G->V; i++){
     if(side[i] == STANDING){
       side[i] = LEFT;
     }
     for(j = i + 1; j <= G->V; j++){
-      switch(side[j]){
-        case STANDING:
-          if(side[i] == RIGHT){
-            side[j] = LEFT;
-          }else{
-            side[j] = RIGHT;
-          }
-          break;
-        case RIGHT:
-          if(side[i] == RIGHT){
-            return 0;
-          }
-          break;
-        case LEFT:
-          if(side[i] == LEFT){
-            return 0;
-          }
-          break; 
+      if(G->adj[i][j] == 1){
+        switch(side[j]){
+          case STANDING:
+            if(side[i] == RIGHT){
+              side[j] = LEFT;
+            }else{
+              side[j] = RIGHT;
+            }
+            break;
+          case RIGHT:
+            if(side[i] == RIGHT){
+              return 0;
+            }
+            break;
+          case LEFT:
+            if(side[i] == LEFT){
+              return 0;
+            }
+            break; 
+        }
       }
     }
   }
+
+  free(side);
 
   return 1;
 }

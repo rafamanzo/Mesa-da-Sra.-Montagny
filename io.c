@@ -6,8 +6,9 @@
 #include "io.h"
 
 int inputNum(){
-  int i;
+  int i, j;
   char num[3]; /* como 0 <= n <= 100, a maior string possível tem 3 caracteres  */
+  char *ret;
   char c;  
 
   /*limpa buffer de leitura*/
@@ -18,8 +19,8 @@ int inputNum(){
   c = getchar();
   i = 0;
 
-  while(c != ' ' && c != '\n' && c != EOF){
-    num[3 - i] = c;
+  while(c != ' ' && c != '\n' && c != EOF && i < 3){
+    num[2 - i] = c;
     i++;
     c = getchar();
   }
@@ -27,7 +28,13 @@ int inputNum(){
   if(c == EOF){
     return -1;
   }else{
-    return atoi(num);
+    ret = malloc(i*sizeof(char));
+
+    for(j = 3 - i; j >= 0; j--){
+      ret[j] = num[j + i - 1];
+    }
+
+    return atoi(ret);
   }
 }
 
@@ -42,7 +49,6 @@ int * inputLine(){
   }else{
     line[1] = -1;
   }
-
   return line;
 }
 

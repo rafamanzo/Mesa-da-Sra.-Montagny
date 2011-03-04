@@ -1,7 +1,0 @@
-#define GRAPHinit DIGRAPHinit
-#define GRAPHshow DIGRAPHshow
-#define GRAPHpath DIGRAPHpath
-#define Graph Digraph
-
-void GRAPHinsertE(Graph G, Vertex v, Vertex w);
-void GRAPHremoveE(Graph G, Vertex v, Vertex w);

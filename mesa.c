@@ -20,7 +20,7 @@ void solver(){
 }
 
 int processInstance(Graph G){
-  int i, j;
+  int i;
   int *side; /*array para marcar os lados da mesa*/
 
   side = malloc((G->V + 1)*sizeof(int));

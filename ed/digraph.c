@@ -30,12 +30,10 @@ void DIGRAPHdestroy(Digraph G){
   int i,j;
 
   for(i = 0; i < G->V; i++){
-    for(j = 0; j < G->V; j++){
-      free(G->adj[i][j]);
-    }
     free(G->adj[i]);
   }
 
+  free(G->adj);
   free(G);
 }
 

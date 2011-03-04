@@ -10,7 +10,7 @@ int * inputLine(){
 
   line = malloc(2 * sizeof(int));
 
-  if(scanf("%d %d", &line[0], &line[1]) != EOF){
+  if(scanf("%d %d", &line[0], &line[1]) == EOF){
     line[0] = -1;
     line[1] = -1;
   }

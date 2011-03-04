@@ -33,27 +33,9 @@ int processInstance(Graph G){
     if(side[i] == STANDING){
       side[i] = LEFT;
     }
-    for(j = i + 1; j <= G->V; j++){
+    for(j = i + 1; j < G->V; j++){
       if(G->adj[i][j] == 1){
-        switch(side[j]){
-          case STANDING:
-            if(side[i] == RIGHT){
-              side[j] = LEFT;
-            }else{
-              side[j] = RIGHT;
-            }
-            break;
-          case RIGHT:
-            if(side[i] == RIGHT){
-              return 0;
-            }
-            break;
-          case LEFT:
-            if(side[i] == LEFT){
-              return 0;
-            }
-            break; 
-        }
+        side[j] = (side[i] % 2) + 1;
       }
     }
   }

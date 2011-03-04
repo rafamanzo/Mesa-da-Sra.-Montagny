@@ -20,7 +20,7 @@ void solver(){
 }
 
 int processInstance(Graph G){
-  int i;
+  int i, j, k;
   int *side; /*array para marcar os lados da mesa*/
 
   side = malloc((G->V + 1)*sizeof(int));
@@ -35,7 +35,12 @@ int processInstance(Graph G){
     }
     for(j = i + 1; j < G->V; j++){
       if(G->adj[i][j] == 1){
-        side[j] = (side[i] % 2) + 1;
+        k = (side[i] % 2) + 1;
+        if((side[i] == k) | side[i] == side[j]){
+          return 0;
+        }else{
+          side[j] = k;
+        }
       }
     }
   }

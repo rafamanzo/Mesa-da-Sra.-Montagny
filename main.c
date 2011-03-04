@@ -74,7 +74,7 @@ Digraph DIGRAPHinit(int vertexCount){
 }
 
 void DIGRAPHdestroy(Digraph G){
-  int i,j;
+  int i;
 
   for(i = 0; i < G->V; i++){
     free(G->adj[i]);

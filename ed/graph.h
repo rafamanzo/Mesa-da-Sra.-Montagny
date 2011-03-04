@@ -1,4 +1,5 @@
 #define GRAPHinit DIGRAPHinit
+#define GRAPHdestroy DIGRAPHdestroy
 #define GRAPHshow DIGRAPHshow
 #define GRAPHpath DIGRAPHpath
 #define Graph Digraph

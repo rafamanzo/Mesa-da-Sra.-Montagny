@@ -10,6 +10,7 @@ typedef struct digraph *Digraph;
 
 void lblInit();
 Digraph DIGRAPHinit(int vertexCount);
+void DIGRAPHdestroy(Digraph G);
 int** MATRIXint(int r, int c, int val);
 void DIGRAPHinsertA(Digraph G, Vertex v, Vertex w);
 void DIGRAPHremoveA(Digraph G, Vertex v, Vertex w);

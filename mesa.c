@@ -12,9 +12,10 @@ void solver(){
   instance = 1;
   G = inputInstance();
   while(G != NULL){
-     outInstance(instance, processInstance(G));
-     instance++;
-     G = inputInstance();
+    outInstance(instance, processInstance(G));
+    instance++;
+    DIGRAPHdestroy(G);
+    G = inputInstance();
   }
 }
 

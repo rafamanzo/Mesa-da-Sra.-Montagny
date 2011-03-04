@@ -26,6 +26,19 @@ Digraph DIGRAPHinit(int vertexCount){
   return G;
 }
 
+void DIGRAPHdestroy(Digraph G){
+  int i,j;
+
+  for(i = 0; i < G->V; i++){
+    for(j = 0; j < G->V; j++){
+      free(G->adj[i][j]);
+    }
+    free(G->adj[i]);
+  }
+
+  free(G);
+}
+
 int ** MATRIXint(int r, int c, int val){
   int **m;
   int i, j;

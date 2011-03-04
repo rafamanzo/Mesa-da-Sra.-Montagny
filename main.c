@@ -174,6 +174,7 @@ Graph inputInstance(){
 
   nums = inputLine();
   if(nums[0] == -1 || nums[1] == -1){
+    free(nums);
     return NULL;
   }else{
     G = GRAPHinit(nums[0] + 1);
@@ -262,4 +263,3 @@ int main(int argc, const char* argv[]){
   solver();
   return 0;
 }
-

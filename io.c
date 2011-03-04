@@ -5,41 +5,24 @@
 #include "ed/graph.h"
 #include "io.h"
 
-int * inputLine(){
-  int * line;
-
-  line = malloc(2 * sizeof(int));
-
-  if(scanf("%d %d", &line[0], &line[1]) == EOF){
-    line[0] = -1;
-    line[1] = -1;
-  }
-
-  return line;
-}
-
 Graph inputInstance(){
   Graph G;
-  int *nums;
+  int in1, in2;
   int relations, i;
 
-  nums = inputLine();
-  if(nums[0] == -1 || nums[1] == -1){
-    free(nums);
+  if(scanf("%d %d", &in1, &in2) == EOF){
     return NULL;
-  }else{
-    G = GRAPHinit(nums[0] + 1);
-    relations = nums[1];
-    free(nums);
+  }
 
-    for(i = 0; i < relations; i++){
-      nums = inputLine();
-      GRAPHinsertE(G, nums[0], nums[1]);
-      free(nums);
-    }
+  G = GRAPHinit(in1 + 1);
+  relations = in2;
 
-    return G;
-  }  
+  for(i = 0; i < relations; i++){
+    scanf("%d %d", &in1, &in2);
+    GRAPHinsertE(G, in1, in2);
+  }
+
+  return G;  
 }
 
 void outInstance(int instance, int response){

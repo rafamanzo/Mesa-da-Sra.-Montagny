@@ -17,6 +17,7 @@ typedef struct digraph *Digraph;
 
 void lblInit();
 Digraph DIGRAPHinit(int vertexCount);
+void DIGRAPHdestroy(Digraph G);
 int** MATRIXint(int r, int c, int val);
 void DIGRAPHinsertA(Digraph G, Vertex v, Vertex w);
 void DIGRAPHremoveA(Digraph G, Vertex v, Vertex w);
@@ -26,6 +27,7 @@ void pathR(Digraph G, Vertex v);
 
 /*graph.h*/
 #define GRAPHinit DIGRAPHinit
+#define GRAPHdestroy DIGRAPHdestroy
 #define GRAPHshow DIGRAPHshow
 #define GRAPHpath DIGRAPHpath
 #define Graph Digraph
@@ -69,6 +71,17 @@ Digraph DIGRAPHinit(int vertexCount){
   G->adj = MATRIXint(vertexCount, vertexCount, 0);
 
   return G;
+}
+
+void DIGRAPHdestroy(Digraph G){
+  int i,j;
+
+  for(i = 0; i < G->V; i++){
+    free(G->adj[i]);
+  }
+
+  free(G->adj);
+  free(G);
 }
 
 int ** MATRIXint(int r, int c, int val){
@@ -208,9 +221,10 @@ void solver(){
   instance = 1;
   G = inputInstance();
   while(G != NULL){
-     outInstance(instance, processInstance(G));
-     instance++;
-     G = inputInstance();
+    outInstance(instance, processInstance(G));
+    instance++;
+    DIGRAPHdestroy(G);
+    G = inputInstance();
   }
 }
 

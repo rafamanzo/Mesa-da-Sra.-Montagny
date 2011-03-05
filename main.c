@@ -38,8 +38,6 @@ void GRAPHremoveE(Graph G, Vertex v, Vertex w);
 /*io.h*/
 Graph inputInstance();
 void outInstance(int instance, int response);
-int inputNum();
-int * inputLine();
 
 /*mesa.h*/
 #define STANDING 0
@@ -167,41 +165,24 @@ void GRAPHremoveE(Graph G, Vertex v, Vertex w){
 }
 
 /*io.c*/
-int * inputLine(){
-  int * line;
-
-  line = malloc(2 * sizeof(int));
-
-  if(scanf("%d %d", &line[0], &line[1]) == EOF){
-    line[0] = -1;
-    line[1] = -1;
-  }
-
-  return line;
-}
-
 Graph inputInstance(){
   Graph G;
-  int *nums;
+  int in1, in2;
   int relations, i;
 
-  nums = inputLine();
-  if(nums[0] == -1 || nums[1] == -1){
-    free(nums);
+  if(scanf("%d %d", &in1, &in2) == EOF){
     return NULL;
-  }else{
-    G = GRAPHinit(nums[0] + 1);
-    relations = nums[1];
-    free(nums);
+  }
 
-    for(i = 0; i < relations; i++){
-      nums = inputLine();
-      GRAPHinsertE(G, nums[0], nums[1]);
-      free(nums);
-    }
+  G = GRAPHinit(in1 + 1);
+  relations = in2;
 
-    return G;
-  }  
+  for(i = 0; i < relations; i++){
+    scanf("%d %d", &in1, &in2);
+    GRAPHinsertE(G, in1, in2);
+  }
+
+  return G;  
 }
 
 void outInstance(int instance, int response){
@@ -238,19 +219,31 @@ int processInstance(Graph G){
     side[i] = STANDING;
   }
 
-  for(i = 1; i <= G->V; i++){
-    if(side[i] == STANDING){
-      side[i] = LEFT;
-    }
-    for(j = i + 1; j < G->V; j++){
+  for(i = 1; i < G->V; i++){
+    for(j = i + 1; j <= G->V; j++){
       if(G->adj[i][j] == 1){
-        k = (side[i] % 2) + 1;
-        if((k == side[i]) | (side[j] == side[i])){
-          return 0;
+        if(side[i] == STANDING){
+          if(side[j] == STANDING){
+            side[j] = RIGHT;
+          }else{
+            side[i] = (side[j] % 2) + 1;
+            for(k = j - 1; k > i; k--){
+              if(G->adj[i][k] == 1){
+                side[k] = side[j];
+              }
+            }
+          }
         }else{
-          side[j] = k;
+          if(side[i] == side[j]){
+            return 0;
+          }else{
+            side[j] = (side[i] % 2) + 1;
+          }
         }
       }
+    }
+    if(side[i] == STANDING){
+      side[i] = LEFT;
     }
   }
 

@@ -1,3 +1,15 @@
+/******************************************************/
+/* MAC0328 - Algoritmos em grafos                     */
+/*                                                    */
+/* rafamz                                             */
+/* macacada                                           */
+/* Rafael Reggiani Manzo                              */
+/* 6797150                                            */
+/*                                                    */
+/* Projeto hospedado no github:                       */
+/* https://github.com/rafamanzo/Mesa-da-Sra.-Montagny */
+/******************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 

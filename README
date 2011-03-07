@@ -1,4 +1,29 @@
+ATENÇÃO
+VERSÃO APENAS PARA ENTREGA NO SPOJ
+CONFIRA A VERSÃO ESTRUTURADA NO BRANCH MASTER
+
+IME - USP
+São Paulo - 06/03/2011
+Rafael Reggiani Manzo
+
+Primeira tarefa de MAC0328 - Algoritmos em grafos
+
+Solução para o problema da Mesa da Sra. Montagny (https://br.spoj.pl/problems/MESA/) utlizando conceitos básicos de grafos.
+
+Resultados SPOJ:
+* Consumo de memória 1.8M
+* Tempo 1.79s
+
 Ambiente de desenvolvimento:
 
 * Linux - Ubuntu Netbook Remix v10.10
 * GCC 4.4
+
+Entrada:
+* A entrada esperada é no seguinte formato:
+    3 3
+    1 2
+    2 3
+    1 3
+* Onde a primeira linha significa que serão 3 pessoas e que há 3 relações entre estas pessoas.
+* As demais linhas são as relações. Ou seja: 1 é amigo de 2; 2 é amigo de 3; 1 é amigo de 3;

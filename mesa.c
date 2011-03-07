@@ -29,7 +29,6 @@ int processInstance(Graph G){
   flag = malloc((G->V)*sizeof(int));
   for(i = 0; i < G->V; i++){
     side[i] = STANDING;
-    flag[i] = 0;
   }
 
   for(i = 1; i < G->V; i++){
@@ -38,7 +37,7 @@ int processInstance(Graph G){
     }
     for(j = 1; j < G->V; j++){
       if(!flag[j]){
-        i = j;
+        i = j - 1;
         j = G->V;
       }
     }
@@ -54,7 +53,18 @@ int recursiveCheck(Graph G, Vertex actual, int *side, int *flag){
   flag[actual] = 1;
 
   if(side[actual] == STANDING){
-    side[actual] = LEFT;
+    for(i = 1; i < G->V; i++){
+      if(G->adj[actual][i]){
+        if(side[i] != STANDING){
+          side[actual] = (side[i] % 2) + 1;
+          i = G->V;
+        }
+      }
+    }
+
+    if(side[actual] == STANDING){
+      side[actual] = LEFT;
+    }
   }
 
   for(i = 1; i < G->V; i++){

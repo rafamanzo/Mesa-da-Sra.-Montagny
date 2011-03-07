@@ -45,6 +45,7 @@ void outInstance(int instance, int response);
 #define LEFT 2
 
 int processInstance(Graph G);
+int recursiveCheck(Graph G, Vertex actual, int *side, int *flag);
 void solver();
 
 /*digraph.c*/
@@ -202,52 +203,74 @@ void solver(){
   instance = 1;
   G = inputInstance();
   while(G != NULL){
+    /*printf("\nAqui G->V=%d", G->V);*/
     outInstance(instance, processInstance(G));
     instance++;
-    DIGRAPHdestroy(G);
+    GRAPHdestroy(G);
     G = inputInstance();
   }
 }
 
 int processInstance(Graph G){
-  int i, j, k;
-  int *side; /*array para marcar os lados da mesa*/
+  int *flag, *side, i, j;
 
-  side = malloc((G->V + 1)*sizeof(int));
-
-  for(i = 1; i <= G->V; i++){
+  side = malloc((G->V)*sizeof(int));
+  flag = malloc((G->V)*sizeof(int));
+  for(i = 0; i < G->V; i++){
     side[i] = STANDING;
   }
 
   for(i = 1; i < G->V; i++){
-    for(j = i + 1; j <= G->V; j++){
-      if(G->adj[i][j] == 1){
-        if(side[i] == STANDING){
-          if(side[j] == STANDING){
-            side[j] = RIGHT;
-          }else{
-            side[i] = (side[j] % 2) + 1;
-            for(k = j - 1; k > i; k--){
-              if(G->adj[i][k] == 1){
-                side[k] = side[j];
-              }
-            }
-          }
-        }else{
-          if(side[i] == side[j]){
-            return 0;
-          }else{
-            side[j] = (side[i] % 2) + 1;
-          }
-        }
-      }
+    if(!recursiveCheck(G, i, side, flag)){    
+      free(side);
+      free(flag);
+      return 0;
     }
-    if(side[i] == STANDING){
-      side[i] = LEFT;
+    for(j = 1; j < G->V; j++){
+      if(!flag[j]){
+        i = j - 1;
+        j = G->V;
+      }
     }
   }
 
   free(side);
+  free(flag);
+
+  return 1;
+
+}
+
+int recursiveCheck(Graph G, Vertex actual, int *side, int *flag){
+  int i;
+
+  flag[actual] = 1;
+
+  if(side[actual] == STANDING){
+    for(i = 1; i < G->V; i++){
+      if(G->adj[actual][i]){
+        if(side[i] != STANDING){
+          side[actual] = (side[i] % 2) + 1;
+          i = G->V;
+        }
+      }
+    }
+
+    if(side[actual] == STANDING){
+      side[actual] = LEFT;
+    }
+  }
+
+  for(i = 1; i < G->V; i++){
+    if(G->adj[actual][i]){
+      if(side[i] == side[actual]){
+        return 0;
+      }else if(side[i] == STANDING){
+        side[i] = (side[actual] % 2) + 1;
+        return recursiveCheck(G, i, side, flag);
+      }
+    }
+  }
 
   return 1;
 }

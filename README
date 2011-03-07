@@ -1,3 +1,15 @@
+IME - USP
+São Paulo - 06/03/2011
+Rafael Reggiani Manzo
+
+Primeira tarefa de MAC0328 - Algoritmos em grafos
+
+Solução para o problema da Mesa da Sra. Montagny (https://br.spoj.pl/problems/MESA/) utlizando conceitos básicos de grafos.
+
+Resultados SPOJ:
+* Consumo de memória 1.8M
+* Tempo 1.79s
+
 Ambiente de desenvolvimento:
 
 * Linux - Ubuntu Netbook Remix v10.10

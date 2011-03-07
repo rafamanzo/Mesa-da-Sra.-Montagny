@@ -1,3 +1,12 @@
+/**********************************/
+/* MAC0328 - Algoritmos em grafos */
+/*                                */
+/* rafamz                         */
+/* macacada                       */
+/* Rafael Reggiani Manzo          */
+/* 6797150                        */
+/**********************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ed/vertex.h"

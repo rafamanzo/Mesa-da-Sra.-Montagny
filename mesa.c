@@ -1,5 +1,13 @@
+/**********************************/
+/* MAC0328 - Algoritmos em grafos */
+/*                                */
+/* rafamz                         */
+/* macacada                       */
+/* Rafael Reggiani Manzo          */
+/* 6797150                        */
+/**********************************/
+
 #include<stdlib.h>
-#include<stdio.h>
 #include "ed/vertex.h"
 #include "ed/digraph.h"
 #include "ed/graph.h"
@@ -7,14 +15,12 @@
 #include "mesa.h"
 
 void solver(){
-  int instance, i;
-  int *side;
+  int instance;
   Graph G;
 
   instance = 1;
   G = inputInstance();
   while(G != NULL){
-    /*printf("\nAqui G->V=%d", G->V);*/
     outInstance(instance, processInstance(G));
     instance++;
     GRAPHdestroy(G);
@@ -33,6 +39,8 @@ int processInstance(Graph G){
 
   for(i = 1; i < G->V; i++){
     if(!recursiveCheck(G, i, side, flag)){
+      free(side);
+      free(flag);
       return 0;
     }
     for(j = 1; j < G->V; j++){
@@ -43,6 +51,8 @@ int processInstance(Graph G){
     }
   }
 
+  free(side);
+  free(flag);
   return 1;
 
 }
